@@ -1,0 +1,97 @@
+{% extends 'back.html.twig' %}
+
+{% block title "Création d'un utilisateur" %}
+
+{% block body %}
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-2">
+        <h1 class="h3 mb-0 text-gray-200">Création d'un utilisateur</h1>
+    </div>
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('user.index') }}">Gestion des utilisateurs</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Création d'un utilisateur</li>
+        </ol>
+    </nav>
+
+    <hr>
+
+    <form action="#" method="post" enctype="multipart/form-data">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <div class="h6 m-0 font-weight-bold text-light">Informations</div>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="email">Username / email <span class="text-danger">*</span></label>
+                    <input id="email" name="email" type="email" class="form-control form-control-sm" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe <span class="text-danger">*</span></label>
+                    <input id="password" name="password" type="text" class="form-control form-control-sm" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <div class="h6 m-0 font-weight-bold text-light">Droits d'accès</div>
+            </div>
+            <div class="card-body">
+                <p>API Heidi</p>
+                <div class="form-check">
+                    <input class="form-check-input" name="roles[]" type="checkbox" id="ROLE_ADMIN" value="ROLE_ADMIN">
+                    <label class="form-check-label" for="ROLE_ADMIN">ROLE_ADMIN</label>
+                </div>
+                <hr>
+                <p>Plateforme Iptis</p>
+                <div class="form-check">
+                    <input class="form-check-input" name="roles[]" type="checkbox" id="ROLE_IPTIS_ADMIN" value="ROLE_IPTIS_ADMIN">
+                    <label class="form-check-label" for="ROLE_IPTIS_ADMIN">ROLE_IPTIS_ADMIN</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="roles[]" type="checkbox" id="ROLE_IPTIS_CHEF" value="ROLE_IPTIS_CHEF">
+                    <label class="form-check-label" for="ROLE_IPTIS_CHEF">ROLE_IPTIS_CHEF</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="roles[]" type="checkbox" id="ROLE_IPTIS_COMMERCIAL" value="ROLE_IPTIS_COMMERCIAL">
+                    <label class="form-check-label" for="ROLE_IPTIS_COMMERCIAL">ROLE_IPTIS_COMMERCIAL</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="roles[]" type="checkbox" id="ROLE_IPTIS_DEVISEUR_ACCORD_PRIX" value="ROLE_IPTIS_DEVISEUR_ACCORD_PRIX">
+                    <label class="form-check-label" for="ROLE_IPTIS_DEVISEUR_ACCORD_PRIX">ROLE_IPTIS_DEVISEUR_ACCORD_PRIX</label>
+                </div>
+                <hr>
+                <p>Plateforme E-signature</p>
+                <hr>
+                <p>Plateforme d'envoie de courriers</p>
+                <hr>
+                <p>Fiche de frais</p>
+                <div class="form-check">
+                    <input class="form-check-input" name="roles[]" type="checkbox" id="ROLE_FRAIS_ADMIN" value="ROLE_FRAIS_ADMIN">
+                    <label class="form-check-label" for="ROLE_FRAIS_ADMIN">ROLE_FRAIS_ADMIN</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="roles[]" type="checkbox" id="ROLE_FRAIS_EMPLOYE" value="ROLE_FRAIS_EMPLOYE">
+                    <label class="form-check-label" for="ROLE_FRAIS_EMPLOYE">ROLE_FRAIS_EMPLOYE</label>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    <input id="enabled" name="enabled" type="checkbox" aria-label="Activer">&nbsp;Activer ce compte
+                </span>
+            </div>
+            <button class="btn btn-success" type="submit">
+                <i class="far fa-save"></i>&nbsp;Enregistrer
+            </button>
+        </div>
+
+    </form>
+
+{% endblock %}

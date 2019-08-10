@@ -1,0 +1,70 @@
+{% extends 'front.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        #logo_login {background-image:url('/images/logo.png');background-size:cover;background-repeat:no-repeat;height:192px;width:600px;position:absolute;top:0;bottom:0;right:0;left:0;margin:auto;}
+    </style>
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="container-fluid pl-0 bg-login-image">
+        <div class="row">
+
+            <div class="col-lg-3 col-md-5 col-sm-6 col-xs-12 p-0">
+                <div class="card o-hidden border-0 shadow-lg min-vh-100" style="border-radius:0;">
+                    <div class="card-body">
+                        {% if error %}
+                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
+                        
+                        <h1 class="h4 text-gray-200 mb-4"><i class="fas fa-id-badge"></i> Gestion des utilisateurs <sup>V1.0</sup></h1>
+                        
+                        <hr>
+
+                        <form method="post" class="user">
+                            <div class="form-group">
+                                <label id="usernameLabel" for="email" class="sr-only">Votre adresse email</label>
+                                <input type="email" name="email" id="email" class="form-control form-control-user" aria-describedby="usernameLabel" placeholder="Votre adresse email...">
+                            </div>
+                            <div class="form-group">
+                                <label id="passwordLabel" for="password" class="sr-only">Votre mot de passe</label>
+                                <input type="password" name="password" id="password" class="form-control form-control-user" aria-describedby="usernameLabel" placeholder="Votre mot de passe">
+                            </div>
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                            {#
+                                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                                See https://symfony.com/doc/current/security/remember_me.html
+
+                                <div class="checkbox mb-3">
+                                    <label>
+                                        <input type="checkbox" name="_remember_me"> Se souvenir de moi
+                                    </label>
+                                </div>
+                            #}
+
+                            <button class="btn btn-success btn-user btn-block" type="submit">
+                                <i class="fas fa-sign-in-alt"></i> Se connecter
+                            </button>
+                        </form>
+                        <hr>
+                        <span class="small text-muted">© 2019 - <a href="https://scryfall.com/" target="_blank" class="text-muted">Propulsé par l'API Scryfall</a>.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-9 col-md-7 col-sm-6 col-xs-12 d-none d-sm-block">
+                <a href="https://www.iptis.fr/" target="_blank" class="text-muted">
+                    <div id="logo_login"></div>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+
+
+{% endblock %}

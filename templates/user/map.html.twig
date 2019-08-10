@@ -1,0 +1,30 @@
+{% extends 'back.html.twig' %}
+
+{% block title "Espace personnel" %}
+
+{% block body %}
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-200"><i class="far fa-map text-gray-400"></i> <span>Map des droits</span></h1>
+    </div>
+
+    <hr>
+
+    <div class="card shadow mb-4">
+        <ul class="card-body">
+            <ul>
+                {% for key, role in roles %}
+                    <li>
+                        {{ key }}
+                        <ul>
+                            {% for sous_role in role %}
+                                <li>{{ sous_role }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}

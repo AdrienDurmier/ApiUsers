@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %} | Gestion des utilisateurs</title>
+        <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/plateforme/css/sb-admin-2.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/select2/css/select2.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/plateforme/css/back.css') }}">
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body id="page-top">
+
+        <div id="wrapper">
+
+            <ul class="navbar-nav bg-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ path('back.index') }}">
+                <div class="sidebar-brand-icon">
+                    <i class="fas fa-id-badge"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Users <sup>V1.0</sup></div>
+            </a>
+
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('back.index') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i><span>Tableau de bord</span>
+                </a>
+            </li>
+
+            <hr class="sidebar-divider">
+            <div class="sidebar-heading">Gestion des utilisateurs</div>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('user.index') }}">
+                    <i class="fas fa-users"></i><span>Utilisateurs</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('user.map') }}">
+                    <i class="far fa-map"></i><span>Map des droits</span>
+                </a>
+            </li>
+
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+            </ul>
+
+            <div id="content-wrapper" class="d-flex flex-column">
+
+                <div id="content">
+
+                    <nav class="navbar navbar-expand navbar-dark bg-black topbar mb-4 static-top shadow">
+
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <ul class="navbar-nav ml-auto">
+
+                        {# Documentation #}
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="/api/doc" title="Documentation de l'API">
+                                <i class="fas fa-info-circle fa-fw"></i>
+                            </a>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        {# Utilisateur #}
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ app.user.username }}</span>
+                                <i class="fas fa-user-circle fa-2x"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="{{ path('logout') }}" title="Se déconnecter">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Se déconnecter
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                    </nav>
+
+                    
+                    <div class="container-fluid">
+
+                        {# Alertes #}
+                        {% for message in app.flashes('success') %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <i class="fas fa-check"></i> {{ message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {%  endfor %}
+                        {% for message in app.flashes('info') %}
+                            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                <i class="fas fa-info-circle"></i> {{ message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {%  endfor %}
+                        {% for message in app.flashes('warning') %}
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <i class="fas fa-exclamation-triangle"></i> {{ message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {%  endfor %}
+                        {% for message in app.flashes('danger') %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <i class="fas fa-times"></i> {{ message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {%  endfor %}
+
+                        {# Contenu de la page #}
+                        {% block body %}{% endblock %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+
+        <noscript>Your browser does not support JavaScript!</noscript>
+        <script src="{{ asset('assets/jquery/jquery-3.3.1.min.js') }}"></script>
+        <script src="{{ asset('assets/popper/popper.min.js') }}"></script>
+        <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('assets/plateforme/js/sb-admin-2.js') }}"></script>
+        <script src="{{ asset('assets/select2/js/select2.js') }}"></script>
+        <script src="{{ asset('bundles/fosckeditor/ckeditor.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

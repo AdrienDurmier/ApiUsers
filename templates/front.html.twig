@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %} | Plateforme</title>
+        <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/plateforme/css/sb-admin-2.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/plateforme/css/front.css') }}">
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+    
+        {% block body %}{% endblock %}
+
+        <noscript>Your browser does not support JavaScript!</noscript>
+        <script src="{{ asset('assets/jquery/jquery-3.3.1.min.js') }}"></script>
+        <script src="{{ asset('assets/popper/popper.min.js') }}"></script>
+        <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
+
